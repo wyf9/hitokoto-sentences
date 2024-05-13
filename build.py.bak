@@ -3,7 +3,6 @@
 import json
 import os
 from datetime import datetime
-import time
 
 def info(log):
     print(f"[Info] {datetime.now().strftime('[%Y-%m-%d %H:%M:%S]')} " + log)
@@ -27,7 +26,6 @@ def merge_sentences():
     info(f"read category ok: {categories}")
 
     all_sentences = []
-    lite_sentences = []
     all_id = 1  # 用于自动编号
 
     # 遍历每个分类
@@ -45,43 +43,12 @@ def merge_sentences():
         for sentence in sentences:
             sentence["all_id"] = all_id
             all_id += 1
-            sentence_lite = sentence
-            sentence_lite_new = {}
-            
-            # 删除不需要的键 sentences_all
-            for key in ["creator", "creator_uid", "reviewer", "commit_from", "created_at"]:
-                if key in sentence:
-                    del sentence[key]
             all_sentences.append(sentence)
-            
-            # 删除除 all_id 和 hitokoto 以外的项 sentences_lite
-            for key in ["all_id", "hitokoto"]:
-                if key in sentence_lite:
-                    sentence_lite_new[key] = sentence_lite[key]
-            lite_sentences.append(sentence_lite_new)
 
     # 将所有句子写入 sentences_all.json 文件
-    info(f"writing sentences all")
+    info(f"writing sentences")
     with open("sentences_all.json", "w", encoding="utf-8") as f:
         json.dump(all_sentences, f, indent=4, ensure_ascii=False)
-    
-    # 将所有句子写入 sentences_lite.json 文件
-    info(f"writing sentences lite")
-    with open("sentences_lite.json", "w", encoding="utf-8") as f:
-        json.dump(lite_sentences, f, indent=4, ensure_ascii=False)
-
-    # 写入 build_info.json
-    build_info = {
-        'version': 1,
-        'build_time': int(time.time()),
-        'all_ids': {
-            'start': 1,
-            'end': all_id,
-        }
-    }
-    info(f"writing build info: ```{build_info}```")
-    with open("build_info.json", "w", encoding="utf-8") as f:
-        json.dump(build_info, f, indent=4, ensure_ascii=False)
 
 if __name__ == "__main__":
     info("Main detected")
