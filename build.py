@@ -55,7 +55,8 @@ def merge_sentences():
             all_sentences.append(sentence)
             
             # 删除除 all_id 和 hitokoto 以外的项 sentences_lite
-            for key in ["all_id", "hitokoto"]:
+            #for key in ["all_id", "hitokoto"]:
+            for key in ["hitokoto"]:
                 if key in sentence_lite:
                     sentence_lite_new[key] = sentence_lite[key]
             lite_sentences.append(sentence_lite_new)
