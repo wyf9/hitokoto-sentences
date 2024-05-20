@@ -17,18 +17,19 @@ export async function onRequest(context) {
   
   const rand_id = getRandomId(start_all_id, end_all_id);
 
-  const resp_json = data[rand_id];
+  //const resp_json = data[rand_id];
+  const resp_json = data
 
   // 根据请求参数返回不同格式的数据
   const { searchParams } = new URL(context.request.url);
   const format = searchParams.get('format') || 'text';
   switch (format) {
-    case 'get_lite':
+    case 'lite':
       return new Response(JSON.stringify({
         uuid: resp_json.uuid,
         hitokoto: resp_json.hitokoto,
       }));
-    case 'get_all':
+    case 'all':
       return new Response(JSON.stringify(resp_json));
     case 'text':
       return new Response(resp_json.hitokoto);
