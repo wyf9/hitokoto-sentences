@@ -34,12 +34,16 @@ function getRandomInt(min, max) {
     // return new Response(start_all_id + " " + end_all_id + " " + rand_id);
 
     var resp = await fetch("https://sentences.wyf9.top/sentences_lite.json");
-        var resp_json = resp[rand_id];
-        return new Response(JSON.stringify({
-          uuid: resp_json.uuid,
-          hitokoto: resp_json.hitokoto,
-          all_ld: rand_id,
-        }));
+    var resp_json = resp[rand_id];
+    return new Response(resp_json);
+    // return new Response(JSON.stringify(
+    //   {
+    //       uuid: resp_json.uuid,
+    //       hitokoto: resp_json.hitokoto,
+    //       all_ld: rand_id,
+    //   }
+    // )
+    // );
   
     /*/ 根据请求参数返回不同格式的数据
     const { searchParams } = new URL(context.request.url);
