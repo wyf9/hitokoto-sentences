@@ -17,12 +17,14 @@ function getRandomId(start_all_id, end_all_id) {
     
     const rand_id = getRandomId(start_all_id, end_all_id);
 
-    var resp = await fetch("https://sentences.wyf9.top/sentences_lite.json");
-        var resp_json = resp[rand_id];
-        return new Response(JSON.stringify({
-          //uuid: resp_json.uuid,
-          hitokoto: resp_json.hitokoto,
-        }));
+    return new Response(rand_ld);
+
+    // var resp = await fetch("https://sentences.wyf9.top/sentences_lite.json");
+    //     var resp_json = resp[rand_id];
+    //     return new Response(JSON.stringify({
+    //       //uuid: resp_json.uuid,
+    //       hitokoto: resp_json.hitokoto,
+    //     }));
   
     /*/ 根据请求参数返回不同格式的数据
     const { searchParams } = new URL(context.request.url);
