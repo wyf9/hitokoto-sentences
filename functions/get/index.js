@@ -15,9 +15,9 @@ function getRandomId(start_all_id, end_all_id) {
     const start_all_id = data.all_ids.start;
     const end_all_id = data.all_ids.end;
     
-    const rand_id = getRandomId(start_all_id, end_all_id);
+    // const rand_id = getRandomId(start_all_id, end_all_id);
 
-    return new Response(rand_ld);
+    return new Response(start_all_id + " " + end_all_id);
 
     // var resp = await fetch("https://sentences.wyf9.top/sentences_lite.json");
     //     var resp_json = resp[rand_id];
